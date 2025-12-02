@@ -24,6 +24,11 @@
                     </tr>
                     </tbody>
                 </table>
+                <ul class="nav nav-pills">
+                    <li th:each="p,c:${pages}">
+                        <a th:href="@{index(page=${c.index})}" th:text="${c.index}" class="btn btn-outline-info m-1"></a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
