@@ -18,8 +18,7 @@ public class DemoGitSpringApplication {
         return args -> {
             patientRepository.save(Patient.builder()
                     .nom("Liolios").build());
-            patientRepository.save(Patient.builder()
-                    .nom("Dauphin").build());
+            //patientRepository.save(Patient.builder().nom("Dauphin").build());
         };
     }
 }
