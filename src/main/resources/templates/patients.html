@@ -4,6 +4,8 @@
 
     <meta charset="UTF-8" >
     <link rel="stylesheet" href="webjars/bootstrap/5.3.8/css/bootstrap.min.css/">
+    <script src="webjars/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="webjars/bootstrap-icons/1.13.1/font/bootstrap-icons.css">
     <title>Title</title>
 </head>
 <body>
@@ -14,7 +16,9 @@
                 <form method="get" th:action="@{index}">
                     <label>Keyword:</label>
                     <input type="text" name="keyword" th:value="${keyword}">
-                    <button type="submit" class="btn btn-info">Chercher</button>
+                    <button type="submit" class="btn btn-info">
+                        <i class="bi bi-search"></i>
+                    </button>
                 </form>
                 <table class="table">
                     <thead>
@@ -26,13 +30,20 @@
                     <tr th:each="p:${listPatients}">
                         <td th:text="${p.id}"></td>
                         <td th:text="${p.nom}"></td>
+                        <td>
+                            <a class="btn btn-danger"
+                               onclick="return confirm('Confirmez vous la suppression?')"
+                               th:href="@{ delete(id=${p.id}, page=${currentPage}, keyword=${keyword}) }">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
                 <ul class="nav nav-pills">
                     <li th:each="p,c:${pages}">
                         <a th:href="@{index(page=${c.index},keyword=${keyword})}"
-                           th:text="${c.index}"
+                           th:text="${c.index+1}"
                            th:class="${c.index==currentPage? 'btn btn-info ms-1': 'btn btn-outline-info ms-1'}"
                            ></a>
                     </li>
